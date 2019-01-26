@@ -1,0 +1,6 @@
+- .Net Core and EF setup
+- Get information on KoH overall story and character relationships.
+- Figure out how to relate the characters to each other, how many relationships are there, how detailed is this going to be etc..
+- After a few character relationships are added in , start with a simple front end to get the data on the screen (simple images etc.)
+- Figure out the design
+- Does the design require skills I don't have? Go learn things.

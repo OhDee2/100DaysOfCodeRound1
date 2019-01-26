@@ -1,0 +1,15 @@
+Rule One
+Minimum of an hour every day, life permitting.
+
+Rule Two
+Tweet my progress every day
+
+Rule Three
+Help two other people with encouragement every day
+
+Project
+A summary of Kingdom of Hearts complete with how all characters are related to each other
+
+Project motivation
+To develop my front end skills. Preferably using some of html, css and javascript and whatever else I can use.
+If I can get to a point where I'm happy to count the project as done, in interim days before another project I can whip out some tutorials.

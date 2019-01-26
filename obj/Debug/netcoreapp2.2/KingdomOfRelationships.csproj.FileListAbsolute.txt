@@ -28,3 +28,4 @@ C:\Users\james\Documents\Projects\KingdomOfRelationships\obj\Debug\netcoreapp2.2
 C:\Users\james\Documents\Projects\KingdomOfRelationships\obj\Debug\netcoreapp2.2\KingdomOfRelationships.dll
 C:\Users\james\Documents\Projects\KingdomOfRelationships\obj\Debug\netcoreapp2.2\KingdomOfRelationships.pdb
 C:\Users\james\Documents\Projects\KingdomOfRelationships\obj\Debug\netcoreapp2.2\KingdomOfRelationships.csproj.CopyComplete
+C:\Users\james\Documents\Projects\KingdomOfRelationships\obj\Debug\netcoreapp2.2\Razor\Views\CharacterRelationships\Index.g.cshtml.cs

@@ -1,0 +1,13 @@
+@model IEnumerable<CharacterRelationships>
+    @{
+        ViewBag.Title = "Character Relationships";
+        <h1>@ViewBag.Title</h1>
+        <ul>
+            @foreach (var characterRelationship in Model)
+            {
+                <li>
+                    @characterRelationship.ParentCharacter.Name - @characterRelationship.Relationship.Description - @characterRelationship.ChildCharacter.Name
+                </li>
+            }
+        </ul>
+    }
