@@ -1,0 +1,13 @@
+@model CharacterRelationshipsViewModel
+@{
+    ViewBag.Title = "New character relationships";
+}
+<h1>@ViewBag.Title</h1>
+
+<form asp-controller="CharacterRelationships" asp-action="Create" method="post">
+<select asp-for="SelectedParentCharacter" asp-items="@(new SelectList(Model.Characters,"CharacterId","Name"))"></select> 
+<select asp-for="SelectedRelationship" asp-items="@(new SelectList(Model.Relationships,"RelationshipId","Description"))"></select> 
+<select asp-for="SelectedChildCharacter" asp-items="@(new SelectList(Model.Characters,"CharacterId","Name"))"></select> 
+
+<br /><button type="submit">Create relationship</button>
+</form>

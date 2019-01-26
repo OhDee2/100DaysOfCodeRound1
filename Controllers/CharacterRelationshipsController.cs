@@ -24,5 +24,17 @@ namespace KingdomOfRelationships.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            using(var context = new TempRepoContext())
+            {
+                var vm = new CharacterRelationshipsViewModel();
+                vm.Characters = context.Characters.AsNoTracking().ToList();
+                vm.Relationships = context.Relationships.AsNoTracking().ToList();
+                return View(vm);
+            }
+        }
     }
 }

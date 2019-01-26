@@ -6,7 +6,7 @@
             @foreach (var characterRelationship in Model)
             {
                 <li>
-                    @characterRelationship.ParentCharacter.Name - @characterRelationship.Relationship.Description - @characterRelationship.ChildCharacter.Name
+                    @characterRelationship.ParentCharacter.Name is @characterRelationship.Relationship.Description with @characterRelationship.ChildCharacter.Name
                 </li>
             }
         </ul>
