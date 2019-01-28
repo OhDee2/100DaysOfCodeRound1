@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KingdomOfRelationships.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KingdomOfRelationships.Controllers
 {
@@ -28,13 +29,29 @@ namespace KingdomOfRelationships.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            using(var context = new TempRepoContext())
+            using (var context = new TempRepoContext())
             {
                 var vm = new CharacterRelationshipsViewModel();
-                vm.Characters = context.Characters.AsNoTracking().ToList();
-                vm.Relationships = context.Relationships.AsNoTracking().ToList();
+                vm.Characters = context.Characters.AsNoTracking().OrderBy(c => c.Name).ToList();
+                vm.Relationships = context.Relationships.AsNoTracking().OrderBy(r => r.Description).ToList();
                 return View(vm);
             }
+        }
+
+        [HttpPost]
+        public ActionResult Create(CharacterRelationshipsViewModel viewModel)
+        {
+            using (var context = new TempRepoContext())
+            {
+                context.CharacterRelationship.Add(new CharacterRelationships()
+                {
+                    ChildCharacter = context.Characters.SingleOrDefault(x => x.CharacterId == viewModel.SelectedChildCharacter),
+                    ParentCharacter = context.Characters.SingleOrDefault(x => x.CharacterId == viewModel.SelectedParentCharacter),
+                    Relationship = context.Relationships.SingleOrDefault(x => x.RelationshipId == viewModel.SelectedRelationship),
+                });
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", viewModel);
         }
     }
 }
