@@ -1,0 +1,22 @@
+@model CharacterViewModel
+    @{
+        ViewBag.Title = "Character";
+        <h1>@ViewBag.Title</h1>
+        <ul>
+            <li>
+                @Model.Character.Name
+            </li>
+        </ul>
+
+        <h2>Related to</h2>
+        <ul>
+            @foreach(var relation in Model.RelatedCharacters)
+            {
+            <ul>
+                <li>
+                    @relation.Name
+                </li>
+            </ul>
+            }
+        </ul>
+    }
