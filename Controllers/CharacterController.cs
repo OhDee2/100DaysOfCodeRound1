@@ -12,7 +12,7 @@ namespace KingdomOfRelationships.Controllers
 {
     public class CharacterController : Controller
     {
-        public ActionResult Index(int id = 3)
+        public ActionResult Index(int id = 1)
         {
             using (var context = new TempRepoContext())
             {

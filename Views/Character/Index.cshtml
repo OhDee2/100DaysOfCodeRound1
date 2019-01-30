@@ -2,11 +2,9 @@
     @{
         ViewBag.Title = "Character";
         <h1>@ViewBag.Title</h1>
-        <ul>
-            <li>
-                @Model.Character.Name
-            </li>
-        </ul>
+        var img = "images/" + @Model.Character.Name + ".png";
+        <img src="@Url.Content(img)" alt=@Model.Character.Name>
+        @Model.Character.Name
 
         <h2>Related to</h2>
         <ul>
