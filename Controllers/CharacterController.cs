@@ -19,11 +19,15 @@ namespace KingdomOfRelationships.Controllers
                 var vm = new CharacterViewModel();
                 vm.Character = context.Characters.FirstOrDefault(x => x.CharacterId == id);
                 vm.RelatedCharacters = context.CharacterRelationship
-                                    .Where(x => x.ParentCharacter.CharacterId == id)
+                                    .Where(x => x.ParentCharacter.CharacterId == id || x.ChildCharacter.CharacterId == id)
                                     .Select(x => new Character()
                                     {
-                                        CharacterId = x.ChildCharacter.CharacterId,
-                                        Name = x.ChildCharacter.Name
+                                        CharacterId = x.ChildCharacter.CharacterId == id ? 
+                                                      x.ParentCharacter.CharacterId : 
+                                                      x.ChildCharacter.CharacterId,
+                                        Name = x.ChildCharacter.CharacterId == id ? 
+                                                      x.ParentCharacter.Name : 
+                                                      x.ChildCharacter.Name,
                                     }).ToList();
                 return View(vm);
             }
