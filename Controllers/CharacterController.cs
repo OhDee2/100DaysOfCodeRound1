@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using KingdomOfRelationships.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using KingdomOfRelationships.Helpers;
 
 namespace KingdomOfRelationships.Controllers
 {
@@ -19,16 +20,22 @@ namespace KingdomOfRelationships.Controllers
                 var vm = new CharacterViewModel();
                 vm.Character = context.Characters.FirstOrDefault(x => x.CharacterId == id);
                 vm.RelatedCharacters = context.CharacterRelationship
-                                    .Where(x => x.ParentCharacter.CharacterId == id || x.ChildCharacter.CharacterId == id)
+                                    .Where(x => x.ParentCharacter.CharacterId == id)
                                     .Select(x => new Character()
                                     {
-                                        CharacterId = x.ChildCharacter.CharacterId == id ? 
-                                                      x.ParentCharacter.CharacterId : 
-                                                      x.ChildCharacter.CharacterId,
-                                        Name = x.ChildCharacter.CharacterId == id ? 
-                                                      x.ParentCharacter.Name : 
-                                                      x.ChildCharacter.Name,
+                                        CharacterId = x.ChildCharacter.CharacterId,
+                                        Name = x.ChildCharacter.Name
                                     }).ToList();
+
+                vm.RelatedCharacters.AddRange(context.CharacterRelationship
+                                    .Where(x => x.ChildCharacter.CharacterId == id)
+                                    .Select(x => new Character()
+                                    {
+                                        CharacterId = x.ParentCharacter.CharacterId,
+                                        Name = x.ParentCharacter.Name
+                                    }).ToList());
+
+                vm.RelatedCharacters = vm.RelatedCharacters.Distinct(new DistinctCharacterComparer()).ToList();
                 return View(vm);
             }
         }
