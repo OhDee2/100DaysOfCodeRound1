@@ -1,21 +1,35 @@
 @model CharacterViewModel
-    @{
-        ViewBag.Title = "Character";
-        <h1>@ViewBag.Title</h1>
-        var characterName = @Model.Character.Name.Replace(" ", "_");
-        var img = "images/" + characterName + ".png";
-        <img src="@Url.Content(img)" alt=@characterName>
-        @Model.Character.Name
+@{
+    var characterNameDisplay = @Model.Character.Name;
+    var characterNameForImageFile = characterNameDisplay.Replace(" ", "_");
+    ViewBag.Title = characterNameDisplay;
+}
 
-        <h2>Related to</h2>
-        <ul>
-            @foreach(var relation in Model.RelatedCharacters)
-            {
-            <ul>
-                <li>
-                    @Html.ActionLink(@relation.Name, "Index", "Character", new { @id = relation.CharacterId }, null)
-                </li>
-            </ul>
+<div class="row">
+    <div class="column">
+        <h2>@ViewBag.Title</h2>
+        <p>
+            @{
+                var img = "/images/" + characterNameForImageFile + ".png";
+                <img src="@Url.Content(img)" alt=@characterNameDisplay>
             }
-        </ul>
-    }
+        </p>
+    </div>
+
+    <div class="column">
+        <p>
+            <h2>Related to</h2>
+            <ul>
+                @foreach(var relation in Model.RelatedCharacters)
+                {
+                    <ul>
+                        <li>
+                            @Html.ActionLink(@relation.Name, "Index", "Character", new { @id = relation.CharacterId }, null)
+                        </li>
+                    </ul>
+                }
+            </ul>
+        </p>
+    </div>
+</div>
+    
